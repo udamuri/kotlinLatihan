@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/actionBarSize"
+    tools:context=".ui.dashboard.DashboardFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        tools:ignore="MissingConstraints">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/purple_700"
+            app:contentInsetStartWithNavigation="0dp"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            android:theme="@style/Toolbar.Light" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_xxxlarge"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingEnd="@dimen/spacing_large"
+                tools:ignore="RtlSymmetry">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/spacing_xxlarge"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/ibBack"
+                        android:visibility="gone"
+                        android:layout_width="@dimen/spacing_xxlarge"
+                        android:layout_height="@dimen/spacing_xxlarge"
+                        android:background="@android:color/transparent"
+                        android:clickable="true"
+                        app:srcCompat="@drawable/ic_baseline_arrow_back_24"
+                        app:tint="@color/white"
+                        android:focusable="true"
+                        android:contentDescription="@string/app_name" />
+
+                    <EditText
+                        android:id="@+id/etSearch"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/search"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/grey_20"
+                        android:imeOptions="actionSearch"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:autofillHints="name"
+                        android:inputType="text">
+
+                        <!--<requestFocus />-->
+
+                    </EditText>
+
+                    <ImageButton
+                        android:id="@+id/ibPrev"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/spacing_xxlarge"
+                        android:background="@android:color/transparent"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:srcCompat="@drawable/ic_baseline_navigate_before_24"
+                        app:tint="@color/white"
+                        android:focusable="true"
+                        android:contentDescription="@string/app_name" />
+
+                    <TextView
+                        android:id="@+id/tvPageNumber"
+                        android:layout_width="@dimen/spacing_large"
+                        android:layout_height="@dimen/spacing_xxlarge"
+                        android:layout_gravity="center"
+                        android:textAlignment="center"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:text="@string/zero"/>
+
+                    <ImageButton
+                        android:id="@+id/ibNext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/spacing_xxlarge"
+                        android:background="@android:color/transparent"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:srcCompat="@drawable/ic_baseline_navigate_next_24"
+                        app:tint="@color/white"
+                        android:focusable="true"
+                        android:contentDescription="@string/app_name" />
+
+                    <View
+                        android:layout_width="@dimen/spacing_large"
+                        android:layout_height="0dp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsvItemLists"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/grey_5"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/spacing_large"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:scrollingCache="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                tools:ignore="UselessParent">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/spacing_large" />
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmerFrameLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:layout_marginLeft="@dimen/spacing_medium"
+                    android:layout_marginRight="@dimen/spacing_medium"
+                    android:layout_gravity="center"
+                    android:orientation="vertical" >
+
+                    <include layout="@layout/shimmer_item_vertical"/>
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/iRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:isScrollContainer="false"
+                    android:nestedScrollingEnabled="false" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
